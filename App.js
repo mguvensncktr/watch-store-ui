@@ -1,21 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useFonts } from 'expo-font';
+import Router from './navigation/Router';
 
 export default function App() {
+
+  const [loaded] = useFonts({
+    'Helvetica-Bold': require('./assets/fonts/Helvetica-Bold.ttf'),
+    'Helvetica-Regular': require('./assets/fonts/Helvetica-Regular.ttf'),
+    'Helvetica-Light': require('./assets/fonts/Helvetica-Light.ttf'),
+    'TrajanPro-Bold': require('./assets/fonts/TrajanPro-Bold.ttf'),
+  })
+
+  if (!loaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Router />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
